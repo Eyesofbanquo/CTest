@@ -29,7 +29,6 @@ class AppleMusicModelUnitTests: XCTestCase {
   func testDecodingAppleMusicDataType() {
     let bundle = Bundle(for: type(of: self))
     
-    
     let jsonFilePath = bundle.path(forResource: "album", ofType: "json")
     XCTAssertNotNil(jsonFilePath)
     

@@ -14,4 +14,5 @@ enum NetworkError: Error {
   case invalidURL
   case invalidImageURL
   case invalidData
+  case decodingError(message: String)
 }
