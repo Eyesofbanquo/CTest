@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5D8654323FC319F003A913B /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8654223FC319F003A913B /* URL+.swift */; };
 		D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */; };
 		D5FE2C0C23FB747E00E9CFEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0B23FB747E00E9CFEB /* SceneDelegate.swift */; };
 		D5FE2C1323FB747F00E9CFEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5FE2C1223FB747F00E9CFEB /* Assets.xcassets */; };
 		D5FE2C1623FB747F00E9CFEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5FE2C1423FB747F00E9CFEB /* LaunchScreen.storyboard */; };
 		D5FE2C2123FB748000E9CFEB /* CodeTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C2023FB748000E9CFEB /* CodeTestTests.swift */; };
 		D5FE2C2C23FB748000E9CFEB /* CodeTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C2B23FB748000E9CFEB /* CodeTestUITests.swift */; };
+		D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C3D23FC2F6F00E9CFEB /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D5D8654223FC319F003A913B /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		D5FE2C0623FB747E00E9CFEB /* CodeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5FE2C0B23FB747E00E9CFEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		D5FE2C2723FB748000E9CFEB /* CodeTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FE2C2B23FB748000E9CFEB /* CodeTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTestUITests.swift; sourceTree = "<group>"; };
 		D5FE2C2D23FB748000E9CFEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5FE2C3D23FC2F6F00E9CFEB /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5D8654023FC317E003A913B /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		D5D8654123FC3192003A913B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D5D8654223FC319F003A913B /* URL+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D5FE2BFD23FB747E00E9CFEB = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +114,7 @@
 		D5FE2C0823FB747E00E9CFEB /* CodeTest */ = {
 			isa = PBXGroup;
 			children = (
+				D5D8654123FC3192003A913B /* Extensions */,
 				D5FE2C3C23FB74A200E9CFEB /* Layers */,
 				D5FE2C3B23FB749B00E9CFEB /* Model */,
 				D5FE2C3A23FB749700E9CFEB /* Views */,
@@ -150,8 +170,18 @@
 		D5FE2C3C23FB74A200E9CFEB /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5D8654023FC317E003A913B /* Errors */,
+				D5FE2C3F23FC2F8500E9CFEB /* Network */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		D5FE2C3F23FC2F8500E9CFEB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D5FE2C3D23FC2F6F00E9CFEB /* Network.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +316,8 @@
 			files = (
 				D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */,
 				D5FE2C0C23FB747E00E9CFEB /* SceneDelegate.swift in Sources */,
+				D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */,
+				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
