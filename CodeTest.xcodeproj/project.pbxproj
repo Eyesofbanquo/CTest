@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
+		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
+		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
+		D5C182FE23FC62370099EB26 /* AppleMusicModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182FD23FC62370099EB26 /* AppleMusicModelUnitTests.swift */; };
+		D5C182FF23FC647B0099EB26 /* album.json in Resources */ = {isa = PBXBuildFile; fileRef = D5C182F823FC60800099EB26 /* album.json */; };
+		D5C1830123FC710B0099EB26 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C1830023FC710B0099EB26 /* NetworkTests.swift */; };
+		D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */; };
 		D5D8654323FC319F003A913B /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8654223FC319F003A913B /* URL+.swift */; };
 		D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */; };
 		D5FE2C0C23FB747E00E9CFEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0B23FB747E00E9CFEB /* SceneDelegate.swift */; };
@@ -37,6 +43,12 @@
 
 /* Begin PBXFileReference section */
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
+		D5C182F823FC60800099EB26 /* album.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = album.json; sourceTree = "<group>"; };
+		D5C182FD23FC62370099EB26 /* AppleMusicModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicModelUnitTests.swift; sourceTree = "<group>"; };
+		D5C1830023FC710B0099EB26 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionProtocol.swift; sourceTree = "<group>"; };
 		D5D8654223FC319F003A913B /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		D5FE2C0623FB747E00E9CFEB /* CodeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +90,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5C182F723FC606E0099EB26 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				D5C182F823FC60800099EB26 /* album.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		D5C182FA23FC62060099EB26 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				D5C182FC23FC62190099EB26 /* Model */,
+				D5C182FB23FC62150099EB26 /* Network */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		D5C182FB23FC62150099EB26 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D5C1830223FC711C0099EB26 /* Mocks */,
+				D5C1830023FC710B0099EB26 /* NetworkTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D5C182FC23FC62190099EB26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D5C182FD23FC62370099EB26 /* AppleMusicModelUnitTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D5C1830223FC711C0099EB26 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		D5D8654023FC317E003A913B /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +188,8 @@
 		D5FE2C1F23FB748000E9CFEB /* CodeTestTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5C182F723FC606E0099EB26 /* Stubs */,
+				D5C182FA23FC62060099EB26 /* Layers */,
 				D5FE2C2023FB748000E9CFEB /* CodeTestTests.swift */,
 				D5FE2C2223FB748000E9CFEB /* Info.plist */,
 			);
@@ -166,6 +222,8 @@
 		D5FE2C3B23FB749B00E9CFEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D5C182F323FC451A0099EB26 /* Album.swift */,
+				D5C182F523FC5FB20099EB26 /* AppleMusic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C182FF23FC647B0099EB26 /* album.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +381,8 @@
 				D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */,
 				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
 				D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */,
+				D5C182F423FC451A0099EB26 /* Album.swift in Sources */,
+				D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +390,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C1830123FC710B0099EB26 /* NetworkTests.swift in Sources */,
+				D5C182FE23FC62370099EB26 /* AppleMusicModelUnitTests.swift in Sources */,
+				D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */,
 				D5FE2C2123FB748000E9CFEB /* CodeTestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
