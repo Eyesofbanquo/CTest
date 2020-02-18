@@ -42,7 +42,7 @@ class AppleMusicModelUnitTests: XCTestCase {
       XCTAssertNotNil(decodedJSON)
       
       let expectedCount = 2
-      let count = decodedJSON.feed.count
+      let count = decodedJSON.results.count
       XCTAssertEqual(count, expectedCount)
     } catch {
       XCTFail(error.localizedDescription)

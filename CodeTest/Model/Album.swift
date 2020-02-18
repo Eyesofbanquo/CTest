@@ -40,6 +40,7 @@ struct Album: Decodable {
     case appleMusicURL = "url"
     case artwork = "artworkUrl100"
   }
+  
 }
 
 extension Album {

@@ -9,11 +9,12 @@
 import Foundation
 
 struct AppleMusic: Decodable {
-  let feed: [Album]
+  let results: [Album]
   
   /// The default keys used to parse the top level feed object.
   enum FeedKeys: String, CodingKey {
     case feed
+    case results
   }
   
   /// The keys used to parse the results array object that lives in the feed object
@@ -26,8 +27,8 @@ extension AppleMusic {
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: FeedKeys.self)
     
-    let resultsContainer = try container.nestedContainer(keyedBy: ResultsKeys.self, forKey: .feed)
-    self.feed = try resultsContainer.decode([Album].self, forKey: .results)
+    let resultsContainer = try container.nestedContainer(keyedBy: FeedKeys.self, forKey: .feed)
+    self.results = try resultsContainer.decode([Album].self, forKey: .results)
     
   }
 }
