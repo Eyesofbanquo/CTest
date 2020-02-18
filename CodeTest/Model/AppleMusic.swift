@@ -10,4 +10,24 @@ import Foundation
 
 struct AppleMusic: Decodable {
   let feed: [Album]
+  
+  /// The default keys used to parse the top level feed object.
+  enum FeedKeys: String, CodingKey {
+    case feed
+  }
+  
+  /// The keys used to parse the results array object that lives in the feed object
+  enum ResultsKeys: String, CodingKey {
+    case results
+  }
+}
+
+extension AppleMusic {
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: FeedKeys.self)
+    
+    let resultsContainer = try container.nestedContainer(keyedBy: ResultsKeys.self, forKey: .feed)
+    self.feed = try resultsContainer.decode([Album].self, forKey: .results)
+    
+  }
 }
