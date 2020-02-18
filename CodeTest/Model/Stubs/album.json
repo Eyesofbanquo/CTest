@@ -1,0 +1,61 @@
+{
+  "feed": {
+    "title": "Coming Soon",
+    "id": "https://rss.itunes.apple.com/api/v1/us/apple-music/coming-soon/all/2/explicit.json",
+    "author": {
+      "name": "iTunes Store",
+      "uri": "http://wwww.apple.com/us/itunes/"
+    },
+    "links": [{
+      "self": "https://rss.itunes.apple.com/api/v1/us/apple-music/coming-soon/all/2/explicit.json"
+    }, {
+      "alternate": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewRoom?fcId=1396220241\u0026app=music"
+    }],
+    "copyright": "Copyright © 2018 Apple Inc. All rights reserved.",
+    "country": "us",
+    "icon": "http://itunes.apple.com/favicon.ico",
+    "updated": "2020-02-17T01:59:29.000-08:00",
+    "results": [{
+      "artistName": "Sam Smith",
+      "id": "1498106870",
+      "releaseDate": "2020-05-01",
+      "name": "To Die For",
+      "kind": "album",
+      "copyright": "A Capitol Records UK Release; ℗ 2020 Universal Music Operations Limited",
+      "artistId": "156488786",
+      "contentAdvisoryRating": "Explicit",
+      "artistUrl": "https://music.apple.com/us/artist/sam-smith/156488786?app=music",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/7d/4a/aa/7d4aaa14-77f8-c9bb-be6d-063d1b5612da/19UM1IM08168.rgb.jpg/200x200bb.png",
+      "genres": [{
+        "genreId": "14",
+        "name": "Pop",
+        "url": "https://itunes.apple.com/us/genre/id14"
+      }, {
+        "genreId": "34",
+        "name": "Music",
+        "url": "https://itunes.apple.com/us/genre/id34"
+      }],
+      "url": "https://music.apple.com/us/album/to-die-for/1498106870?app=music"
+    }, {
+      "artistName": "The Strokes",
+      "id": "1498121188",
+      "releaseDate": "2020-04-10",
+      "name": "The New Abnormal",
+      "kind": "album",
+      "copyright": "℗ 2020 RCA Records, a division of Sony Music Entertainment",
+      "artistId": "560289",
+      "artistUrl": "https://music.apple.com/us/artist/the-strokes/560289?app=music",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/d1/73/89/d17389ce-6978-19d2-4fc1-86daf3c1de89/886448281085.jpg/200x200bb.png",
+      "genres": [{
+        "genreId": "20",
+        "name": "Alternative",
+        "url": "https://itunes.apple.com/us/genre/id20"
+      }, {
+        "genreId": "34",
+        "name": "Music",
+        "url": "https://itunes.apple.com/us/genre/id34"
+      }],
+      "url": "https://music.apple.com/us/album/the-new-abnormal/1498121188?app=music"
+    }]
+  }
+}
