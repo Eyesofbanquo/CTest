@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */; };
+		D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */; };
+		D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */; };
+		D5BF84E823FDAC1400F8F7B1 /* ProcessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E723FDAC1400F8F7B1 /* ProcessTests.swift */; };
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
 		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
 		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
+		D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
+		D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
+		D5BF84E723FDAC1400F8F7B1 /* ProcessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessTests.swift; sourceTree = "<group>"; };
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
@@ -102,6 +108,22 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		D5BF84E123FD410800F8F7B1 /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */,
+			);
+			path = Process;
+			sourceTree = "<group>";
+		};
+		D5BF84E623FDAC0200F8F7B1 /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				D5BF84E723FDAC1400F8F7B1 /* ProcessTests.swift */,
+			);
+			path = Process;
+			sourceTree = "<group>";
+		};
 		D5C182F723FC606E0099EB26 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +135,7 @@
 		D5C182FA23FC62060099EB26 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84E623FDAC0200F8F7B1 /* Process */,
 				D5BF84DE23FD3AA800F8F7B1 /* Storage */,
 				D5C182FC23FC62190099EB26 /* Model */,
 				D5C182FB23FC62150099EB26 /* Network */,
@@ -252,6 +275,7 @@
 		D5FE2C3C23FB74A200E9CFEB /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84E123FD410800F8F7B1 /* Process */,
 				D5C1830523FC83550099EB26 /* Storage */,
 				D5D8654023FC317E003A913B /* Errors */,
 				D5FE2C3F23FC2F8500E9CFEB /* Network */,
@@ -263,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				D5FE2C3D23FC2F6F00E9CFEB /* Network.swift */,
+				D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -403,6 +428,8 @@
 				D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */,
 				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
 				D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */,
+				D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */,
+				D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */,
 				D5C1830723FC83630099EB26 /* Storage.swift in Sources */,
 				D5C182F423FC451A0099EB26 /* Album.swift in Sources */,
 				D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */,
@@ -418,6 +445,7 @@
 				D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */,
 				D5FE2C2123FB748000E9CFEB /* CodeTestTests.swift in Sources */,
 				D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */,
+				D5BF84E823FDAC1400F8F7B1 /* ProcessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
