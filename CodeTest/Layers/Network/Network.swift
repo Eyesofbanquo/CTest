@@ -13,9 +13,9 @@ final class Network<ModelType: Decodable> {
   
   // MARK: - Properties -
   
-  let networkTimeout: TimeInterval
-  var session: URLSession
-  var queue: DispatchQueue
+  private let networkTimeout: TimeInterval
+  private(set) var session: URLSession
+  private(set) var queue: DispatchQueue
   
   init(session: URLSession = URLSession.shared, on queue: DispatchQueue = .main, timeout: TimeInterval = 60.0) {
     self.networkTimeout = timeout
