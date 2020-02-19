@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */; };
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
 		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
 		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
@@ -14,6 +15,7 @@
 		D5C182FF23FC647B0099EB26 /* album.json in Resources */ = {isa = PBXBuildFile; fileRef = D5C182F823FC60800099EB26 /* album.json */; };
 		D5C1830123FC710B0099EB26 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C1830023FC710B0099EB26 /* NetworkTests.swift */; };
 		D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */; };
+		D5C1830723FC83630099EB26 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C1830623FC83630099EB26 /* Storage.swift */; };
 		D5D8654323FC319F003A913B /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8654223FC319F003A913B /* URL+.swift */; };
 		D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */; };
 		D5FE2C0C23FB747E00E9CFEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE2C0B23FB747E00E9CFEB /* SceneDelegate.swift */; };
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		D5C182FD23FC62370099EB26 /* AppleMusicModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicModelUnitTests.swift; sourceTree = "<group>"; };
 		D5C1830023FC710B0099EB26 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionProtocol.swift; sourceTree = "<group>"; };
+		D5C1830623FC83630099EB26 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D5D8654223FC319F003A913B /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		D5FE2C0623FB747E00E9CFEB /* CodeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FE2C0923FB747E00E9CFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5BF84DE23FD3AA800F8F7B1 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		D5C182F723FC606E0099EB26 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		D5C182FA23FC62060099EB26 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84DE23FD3AA800F8F7B1 /* Storage */,
 				D5C182FC23FC62190099EB26 /* Model */,
 				D5C182FB23FC62150099EB26 /* Network */,
 			);
@@ -130,6 +143,14 @@
 				D5C1830323FC739E0099EB26 /* MockURLSessionProtocol.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D5C1830523FC83550099EB26 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D5C1830623FC83630099EB26 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		D5D8654023FC317E003A913B /* Errors */ = {
@@ -231,6 +252,7 @@
 		D5FE2C3C23FB74A200E9CFEB /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5C1830523FC83550099EB26 /* Storage */,
 				D5D8654023FC317E003A913B /* Errors */,
 				D5FE2C3F23FC2F8500E9CFEB /* Network */,
 			);
@@ -381,6 +403,7 @@
 				D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */,
 				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
 				D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */,
+				D5C1830723FC83630099EB26 /* Storage.swift in Sources */,
 				D5C182F423FC451A0099EB26 /* Album.swift in Sources */,
 				D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */,
 			);
@@ -394,6 +417,7 @@
 				D5C182FE23FC62370099EB26 /* AppleMusicModelUnitTests.swift in Sources */,
 				D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */,
 				D5FE2C2123FB748000E9CFEB /* CodeTestTests.swift in Sources */,
+				D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
