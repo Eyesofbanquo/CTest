@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */; };
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
 		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
 		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5BF84DE23FD3AA800F8F7B1 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		D5C182F723FC606E0099EB26 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		D5C182FA23FC62060099EB26 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84DE23FD3AA800F8F7B1 /* Storage */,
 				D5C182FC23FC62190099EB26 /* Model */,
 				D5C182FB23FC62150099EB26 /* Network */,
 			);
@@ -406,6 +417,7 @@
 				D5C182FE23FC62370099EB26 /* AppleMusicModelUnitTests.swift in Sources */,
 				D5C1830423FC739E0099EB26 /* MockURLSessionProtocol.swift in Sources */,
 				D5FE2C2123FB748000E9CFEB /* CodeTestTests.swift in Sources */,
+				D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

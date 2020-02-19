@@ -14,13 +14,22 @@ class Storage {
   
   // MARK: - Properties -
   
-  private(set) var cache: NSCache<NSString, UIImage>
+  private var cache: NSCache<NSString, UIImage>
   
   private var store: [Album]
+  
+  var count: Int {
+    return store.count
+  }
   
   init() {
     cache = NSCache<NSString, UIImage>()
     store = []
+  }
+  
+  deinit {
+    cache.removeAllObjects()
+    store.removeAll()
   }
   
   // MARK: - In Memory Storage -
