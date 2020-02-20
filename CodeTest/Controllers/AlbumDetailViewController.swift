@@ -9,13 +9,23 @@
 import Foundation
 import UIKit
 
+protocol AlbumDetailViewControllerDisplayable {
+  func updateBackgroundImage(image: UIImage?)
+}
+
 class AlbumDetailViewController: UIViewController {
   
   // MARK: - Properties -
   
-  var album: Album
+  private var album: Album
   
-  var artwork: UIImage?
+  private var artwork: UIImage?
+  
+  lazy var operationManager: OperationManager = OperationManager()
+  
+  var displaybleView: AlbumDetailViewControllerDisplayable? {
+    return view as? AlbumDetailViewControllerDisplayable
+  }
   
   init(album: Album, artwork: UIImage?) {
     self.album = album
@@ -43,6 +53,13 @@ class AlbumDetailViewController: UIViewController {
     super.viewDidLoad()
     
     title = "Upcoming Album"
+    
+    let largeArtwork = album.artwork.replacingOccurrences(of: "200x200", with: "1000x1000")
+    if let downloadOp = (DownloadOperation(id: album.id, url: URL(string:largeArtwork)) { [weak self] index, image in
+      self?.displaybleView?.updateBackgroundImage(image: image)
+    }) {
+      operationManager.add(id: album.id, op: downloadOp)
+    }
   }
 }
 

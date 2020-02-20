@@ -23,6 +23,10 @@ class AlbumDetailView: UIView {
   
   // MARK: - Views -
   
+  lazy var blurEffectView: UIVisualEffectView = createVisualEffectView()
+  
+  var backgroundImageView: UIImageView
+  
   var albumArtworkImageView: UIImageView
   
   var albumArtistLabel: UILabel
@@ -39,6 +43,7 @@ class AlbumDetailView: UIView {
   
   init(album: Album, artwork: UIImage?) {
     self.album = album
+    backgroundImageView = UIImageView()
     self.albumArtworkImageView = UIImageView()
     self.albumArtistLabel = UILabel()
     self.albumTitleLabel = UILabel()
@@ -57,6 +62,13 @@ class AlbumDetailView: UIView {
     self.albumArtworkImageView.contentMode = .scaleAspectFit
     self.albumArtworkImageView.layer.masksToBounds = true
     
+    self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+    self.backgroundImageView.contentMode = .scaleAspectFill
+    self.backgroundImageView.layer.masksToBounds = true
+    
+    self.backgroundImageView.alpha = 0
+    self.blurEffectView.alpha = 0
+    
     setupAlbumArtistLabel(album)
     
     setupGenreLabel(album)
@@ -66,7 +78,6 @@ class AlbumDetailView: UIView {
     setupReleaseDateLabel(album)
     
     setupTitleLabel(album)
-    
     
     let albumInfoStackView = UIStackView()
     albumInfoStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +112,8 @@ class AlbumDetailView: UIView {
     mainStackView.addArrangedSubview(metadataStackView)
     
     self.sv([albumArtworkImageView, mainStackView])
+    self.insertSubview(backgroundImageView, belowSubview: albumArtworkImageView)
+    self.insertSubview(blurEffectView, aboveSubview: backgroundImageView)
     
     NSLayoutConstraint.activate([
       // Album artwork constraints
@@ -110,7 +123,18 @@ class AlbumDetailView: UIView {
       // Stack View
       mainStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
       mainStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      mainStackView.topAnchor.constraint(equalTo: albumArtworkImageView.bottomAnchor, constant: 24.0)
+      mainStackView.topAnchor.constraint(equalTo: albumArtworkImageView.bottomAnchor, constant: 24.0),
+      
+      // Background Image View
+      backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+      backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      
+      blurEffectView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      blurEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      blurEffectView.topAnchor.constraint(equalTo: topAnchor),
+      blurEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
     
     
@@ -125,6 +149,34 @@ class AlbumDetailView: UIView {
     self.albumArtworkImageView.layoutIfNeeded()
     self.albumArtworkImageView.layer.cornerRadius = self.albumArtworkImageView.frame.height / 2.0
     print(self.albumArtworkImageView.frame.height / 2.0)
+  }
+  
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    
+    UIView.animate(withDuration: 0.65) {
+      switch self.traitCollection.userInterfaceStyle {
+      case .dark:
+        self.blurEffectView.effect = UIBlurEffect(style: .dark)
+      case .light:
+        self.blurEffectView.effect = UIBlurEffect(style: .light)
+      default: break
+      }
+    }
+  }
+  
+  func createVisualEffectView() -> UIVisualEffectView {
+    let blur: UIBlurEffect
+    
+    if self.traitCollection.userInterfaceStyle == .dark {
+      blur = UIBlurEffect(style: .dark)
+    } else {
+      blur = UIBlurEffect(style: .light)
+    }
+    
+    let imageEffectView = UIVisualEffectView(effect: blur)
+    imageEffectView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return imageEffectView
   }
   
 }
@@ -173,5 +225,18 @@ extension AlbumDetailView {
     self.albumTitleLabel.numberOfLines = 0
     self.albumTitleLabel.font = .preferredFont(forTextStyle: .title1)
   }
+  
+}
+
+extension AlbumDetailView: AlbumDetailViewControllerDisplayable {
+  func updateBackgroundImage(image: UIImage?) {
+    
+    UIView.animate(withDuration: 0.65) {
+      self.backgroundImageView.alpha = 1
+      self.blurEffectView.alpha = 1
+      self.backgroundImageView.image = image
+    }
+  }
+  
   
 }
