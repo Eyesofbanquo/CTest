@@ -82,7 +82,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainViewDelegate {
   func launchDetailViewController(forAlbum album: Album) {
+    let storedCache = storage.retrieveImage(forId: album.id)
     
+    let detailViewController = AlbumDetailViewController(album: album, artwork: storedCache)
+    
+    navigationController?.pushViewController(detailViewController, animated: true)
   }
   
   func retrieveImage(forAlbum album: Album?, at index: IndexPath, _ completion: @escaping (IndexPath, UIImage?) -> Void){
@@ -121,6 +125,7 @@ extension MainViewController {
     
     navigationController.navigationBar.prefersLargeTitles = true
     navigationController.navigationBar.tintColor = .label
+    navigationController.navigationItem.largeTitleDisplayMode = .automatic
     
     
     let navigationAppearance = UINavigationBarAppearance()
