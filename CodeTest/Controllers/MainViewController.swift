@@ -122,14 +122,15 @@ extension MainViewController {
     navigationController.navigationBar.prefersLargeTitles = true
     navigationController.navigationBar.tintColor = .label
     
-    let navigationAppearance = UINavigationBarAppearance()
-    navigationAppearance.configureWithOpaqueBackground()
-    navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
-    navigationAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
-    navigationAppearance.backgroundColor = .systemGroupedBackground
     
-    navigationController.navigationItem.scrollEdgeAppearance = navigationAppearance
-    navigationController.navigationItem.compactAppearance = navigationAppearance
+    let navigationAppearance = UINavigationBarAppearance()
+    navigationAppearance.configureWithTransparentBackground()
+    navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+    navigationAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+    
+    navigationController.navigationBar.scrollEdgeAppearance = navigationAppearance
+    navigationController.navigationBar.compactAppearance = navigationAppearance
+    navigationController.navigationBar.standardAppearance = navigationAppearance
     
     return navigationController
 

@@ -38,6 +38,8 @@ class AlbumCell: UITableViewCell {
     
     artworkImageView = UIImageView()
     artworkImageView.contentMode = .scaleAspectFit
+    artworkImageView.layer.masksToBounds = true
+    artworkImageView.layer.cornerRadius = 4.0
     NSLayoutConstraint.activate([
       artworkImageView.widthAnchor.constraint(equalToConstant: 80.0),
       artworkImageView.heightAnchor.constraint(equalToConstant: 80.0)
@@ -78,6 +80,12 @@ class AlbumCell: UITableViewCell {
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func prepareForReuse() {
+    albumTitleLabel.text = nil
+    albumArtistLabel.text = nil
+    artworkImageView.image = nil
   }
   
   func configure(forAlbum album: Album?) {
