@@ -14,7 +14,7 @@ class Storage {
   
   // MARK: - Properties -
   
-  private var cache: NSCache<NSString, UIImage>
+  private var cache: NSCache<NSString, ImageCache>
   
   private var store: [Album]
   
@@ -23,13 +23,13 @@ class Storage {
   }
   
   init() {
-    cache = NSCache<NSString, UIImage>()
+    cache = NSCache<NSString, ImageCache>()
     store = []
   }
   
   deinit {
-    cache.removeAllObjects()
-    store.removeAll()
+    //    cache.removeAllObjects()
+    //    store.removeAll()
   }
   
   // MARK: - In Memory Storage -
@@ -41,7 +41,8 @@ class Storage {
   
   /// This function will add a list of albums to the store
   func add(albums: [Album]) {
-    self.store.append(contentsOf: albums)
+    self.store = albums
+    //    self.store.append(contentsOf: albums)
   }
   
   /// This function will find the provided album and remove it from the data store. This is a mutating function.
@@ -75,12 +76,14 @@ class Storage {
   // MARK: - Cache Storage -
   
   func saveImage(forId id: String, value: UIImage?) {
-     guard let image = value else { return }
-     
-     cache.setObject(image, forKey: id as NSString)
-   }
-   
-   func retrieveImage(forId id: String) -> UIImage? {
-     return cache.object(forKey: id as NSString)
-   }
+    guard let image = value else { return }
+    
+    let imageCache = ImageCache()
+    imageCache.image = image
+    cache.setObject(imageCache, forKey: id as NSString)
+  }
+  
+  func retrieveImage(forId id: String) -> UIImage? {
+    return cache.object(forKey: id as NSString)?.image
+  }
 }
