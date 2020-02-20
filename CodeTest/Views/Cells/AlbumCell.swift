@@ -23,14 +23,12 @@ class AlbumCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     let mainStackView = UIStackView()
-    mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .horizontal
     mainStackView.spacing = 8.0
     mainStackView.distribution = .fill
     mainStackView.alignment = .center
     
     let labelStackView = UIStackView()
-    labelStackView.translatesAutoresizingMaskIntoConstraints = false
     labelStackView.axis = .vertical
     labelStackView.spacing = 0.0
     labelStackView.distribution = .fill
@@ -46,14 +44,12 @@ class AlbumCell: UITableViewCell {
     ])
     
     albumTitleLabel = UILabel()
-    albumTitleLabel.translatesAutoresizingMaskIntoConstraints = false
     albumTitleLabel.font = .preferredFont(forTextStyle: .headline)
     albumTitleLabel.textColor = .label
     albumTitleLabel.numberOfLines = 0
     albumTitleLabel.lineBreakMode = .byWordWrapping
     
     albumArtistLabel = UILabel()
-    albumArtistLabel.translatesAutoresizingMaskIntoConstraints = false
     albumArtistLabel.textColor = .label
     albumArtistLabel.font = .preferredFont(forTextStyle: .subheadline)
     albumArtistLabel.numberOfLines = 0

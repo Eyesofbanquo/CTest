@@ -61,6 +61,14 @@ class MainView: UIView {
 
 extension MainView: UITableViewDelegate {
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let row = indexPath.row
+    
+    if let album = delegate?.storage.get(index: row) {
+      delegate?.launchDetailViewController(forAlbum: album)
+    }
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
 }
 
 extension MainView: UITableViewDataSource {
