@@ -15,6 +15,7 @@
 		D5BF84EC23FDFF9500F8F7B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84EB23FDFF9500F8F7B1 /* MainView.swift */; };
 		D5BF84EE23FE464D00F8F7B1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */; };
 		D5BF84F023FE60B100F8F7B1 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84EF23FE60B100F8F7B1 /* AlbumCell.swift */; };
+		D5BF84F223FE715F00F8F7B1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84F123FE715F00F8F7B1 /* ImageCache.swift */; };
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
 		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
 		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
@@ -59,6 +60,7 @@
 		D5BF84EB23FDFF9500F8F7B1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		D5BF84EF23FE60B100F8F7B1 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		D5BF84F123FE715F00F8F7B1 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				D5C1830623FC83630099EB26 /* Storage.swift */,
+				D5BF84F123FE715F00F8F7B1 /* ImageCache.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BF84F223FE715F00F8F7B1 /* ImageCache.swift in Sources */,
 				D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */,
 				D5BF84EC23FDFF9500F8F7B1 /* MainView.swift in Sources */,
 				D5BF84EA23FDFEF200F8F7B1 /* MainViewController.swift in Sources */,

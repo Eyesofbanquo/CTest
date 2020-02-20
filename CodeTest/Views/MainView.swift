@@ -85,7 +85,7 @@ extension MainView: UITableViewDataSource {
           let cell = tableView.cellForRow(at: id) as? AlbumCell
           cell?.setImage(image: image)
           UIView.performWithoutAnimation {
-            tableView.reloadData()
+            tableView.reloadRows(at: [id], with: .none)
           }
         }
       })
@@ -107,6 +107,8 @@ extension MainView: UITableViewDataSource {
 
 extension MainView: MainViewControllerDisplayable {
   func updateView() {
-    tableView.reloadData()
+    UIView.performWithoutAnimation {
+      self.tableView.reloadData()
+    }
   }
 }
