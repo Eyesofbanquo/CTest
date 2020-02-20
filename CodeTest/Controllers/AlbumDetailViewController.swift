@@ -71,7 +71,6 @@ extension AlbumDetailViewController: AlbumDetailViewDelegate {
     
     let formatter = DateFormatter()
     formatter.dateFormat = "MMMM d, yyyy"
-//    formatter.dateStyle = .medium
     
     let stringDate = formatter.string(from: date)
     

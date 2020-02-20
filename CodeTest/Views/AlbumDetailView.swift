@@ -41,6 +41,7 @@ class AlbumDetailView: UIView {
   
   var openURLButton: UIButton
   
+  
   init(album: Album, artwork: UIImage?) {
     self.album = album
     backgroundImageView = UIImageView()
@@ -56,18 +57,9 @@ class AlbumDetailView: UIView {
     
     backgroundColor = .systemBackground
     
-    self.albumArtworkImageView.image = artwork
-    self.albumArtworkImageView.layoutIfNeeded()
-    self.albumArtworkImageView.translatesAutoresizingMaskIntoConstraints = false
-    self.albumArtworkImageView.contentMode = .scaleAspectFit
-    self.albumArtworkImageView.layer.masksToBounds = true
+    setupAlbumArtworkImageView(artwork)
     
-    self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-    self.backgroundImageView.contentMode = .scaleAspectFill
-    self.backgroundImageView.layer.masksToBounds = true
-    
-    self.backgroundImageView.alpha = 0
-    self.blurEffectView.alpha = 0
+    setupBackgroundImageView()
     
     setupAlbumArtistLabel(album)
     
@@ -79,39 +71,24 @@ class AlbumDetailView: UIView {
     
     setupTitleLabel(album)
     
-    let albumInfoStackView = UIStackView()
-    albumInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-    albumInfoStackView.axis = .vertical
-    albumInfoStackView.alignment = .fill
-    albumInfoStackView.spacing = 8.0
-    albumInfoStackView.distribution = .fill
+    setupButton()
     
+    let albumInfoStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 8.0)
     albumInfoStackView.addArrangedSubview(albumTitleLabel)
     albumInfoStackView.addArrangedSubview(albumArtistLabel)
     albumInfoStackView.addArrangedSubview(albumReleaseDateLabel)
     
     
-    let metadataStackView = UIStackView()
-    metadataStackView.translatesAutoresizingMaskIntoConstraints = false
-    metadataStackView.axis = .vertical
-    metadataStackView.alignment = .fill
-    metadataStackView.spacing = 16.0
-    metadataStackView.distribution = .fill
-    
+    let metadataStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 16.0)
     metadataStackView.addArrangedSubview(albumGenreLabel)
     metadataStackView.addArrangedSubview(albumCopyrightLabel)
     albumCopyrightLabel.textAlignment = .right
     
-    let mainStackView = UIStackView()
-    mainStackView.axis = .vertical
-    mainStackView.alignment = .fill
-    mainStackView.spacing = 16.0
-    mainStackView.distribution = .fill
-    
+    let mainStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 16.0)
     mainStackView.addArrangedSubview(albumInfoStackView)
     mainStackView.addArrangedSubview(metadataStackView)
     
-    self.sv([albumArtworkImageView, mainStackView])
+    self.sv([albumArtworkImageView, mainStackView, openURLButton])
     self.insertSubview(backgroundImageView, belowSubview: albumArtworkImageView)
     self.insertSubview(blurEffectView, aboveSubview: backgroundImageView)
     
@@ -135,6 +112,10 @@ class AlbumDetailView: UIView {
       blurEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
       blurEffectView.topAnchor.constraint(equalTo: topAnchor),
       blurEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      
+      openURLButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20.0),
+      openURLButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20.0),
+      openURLButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20.0)
     ])
     
     
@@ -152,6 +133,9 @@ class AlbumDetailView: UIView {
   }
   
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    
+    self.albumArtworkImageView.layer.borderWidth = 1.0
+    self.albumArtworkImageView.layer.borderColor = UIColor.label.cgColor
     
     UIView.animate(withDuration: 0.65) {
       switch self.traitCollection.userInterfaceStyle {
@@ -184,6 +168,51 @@ class AlbumDetailView: UIView {
 // MARK: - View Setup -
 
 extension AlbumDetailView {
+  
+  fileprivate func setupAlbumArtworkImageView(_ artwork: UIImage?) {
+    self.albumArtworkImageView.image = artwork
+    self.albumArtworkImageView.layoutIfNeeded()
+    self.albumArtworkImageView.translatesAutoresizingMaskIntoConstraints = false
+    self.albumArtworkImageView.contentMode = .scaleAspectFit
+    self.albumArtworkImageView.layer.masksToBounds = true
+    
+    self.albumArtworkImageView.layer.borderWidth = 1.0
+    self.albumArtworkImageView.layer.borderColor = UIColor.label.cgColor
+  }
+  
+  fileprivate func createStackView(axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment, distribution: UIStackView.Distribution, spacing: CGFloat) -> UIStackView {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = axis
+    stackView.alignment = alignment
+    stackView.spacing = spacing
+    stackView.distribution = distribution
+    
+    return stackView
+  }
+  
+  fileprivate func setupBackgroundImageView() {
+    let motionEffectGroup = UIMotionEffectGroup()
+    let min = CGFloat(-10)
+    let max = CGFloat(10)
+    let xMotion = UIInterpolatingMotionEffect(keyPath: "layer.transform.translation.x", type: .tiltAlongHorizontalAxis)
+    let yMotion = UIInterpolatingMotionEffect(keyPath: "layer.transform.translation.y", type: .tiltAlongVerticalAxis)
+    
+    xMotion.minimumRelativeValue = min
+    xMotion.maximumRelativeValue = max
+    yMotion.minimumRelativeValue = min
+    yMotion.maximumRelativeValue = max
+    
+    motionEffectGroup.motionEffects = [xMotion, yMotion]
+    
+    self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+    self.backgroundImageView.contentMode = .scaleAspectFill
+    self.backgroundImageView.layer.masksToBounds = true
+    backgroundImageView.addMotionEffect(motionEffectGroup)
+    
+    self.backgroundImageView.alpha = 0
+    self.blurEffectView.alpha = 0
+  }
   
   fileprivate func setupAlbumArtistLabel(_ album: Album) {
     self.albumArtistLabel.text = album.artist
@@ -226,6 +255,22 @@ extension AlbumDetailView {
     self.albumTitleLabel.font = .preferredFont(forTextStyle: .title1)
   }
   
+  fileprivate func setupButton() {
+    openURLButton.layer.cornerRadius = 8.0
+    openURLButton.contentEdgeInsets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+    openURLButton.backgroundColor = .systemPink
+    openURLButton.setTitle("Open in iTunes", for: .normal)
+    openURLButton.setTitleColor(.white, for: .normal)
+    openURLButton.addTarget(self, action: #selector(self.launchItunes), for: .touchUpInside)
+  }
+  
+  @objc private func launchItunes() {
+    if let url = URL(string: album.appleMusicURL) {
+      if UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+      }
+    }
+  }
 }
 
 extension AlbumDetailView: AlbumDetailViewControllerDisplayable {
