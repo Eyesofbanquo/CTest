@@ -11,6 +11,10 @@
 		D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */; };
 		D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */; };
 		D5BF84E823FDAC1400F8F7B1 /* ProcessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E723FDAC1400F8F7B1 /* ProcessTests.swift */; };
+		D5BF84EA23FDFEF200F8F7B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E923FDFEF200F8F7B1 /* MainViewController.swift */; };
+		D5BF84EC23FDFF9500F8F7B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84EB23FDFF9500F8F7B1 /* MainView.swift */; };
+		D5BF84EE23FE464D00F8F7B1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */; };
+		D5BF84F023FE60B100F8F7B1 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84EF23FE60B100F8F7B1 /* AlbumCell.swift */; };
 		D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F123FC36480099EB26 /* NetworkError.swift */; };
 		D5C182F423FC451A0099EB26 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F323FC451A0099EB26 /* Album.swift */; };
 		D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C182F523FC5FB20099EB26 /* AppleMusic.swift */; };
@@ -51,6 +55,10 @@
 		D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 		D5BF84E723FDAC1400F8F7B1 /* ProcessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessTests.swift; sourceTree = "<group>"; };
+		D5BF84E923FDFEF200F8F7B1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D5BF84EB23FDFF9500F8F7B1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		D5BF84EF23FE60B100F8F7B1 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		D5C182F123FC36480099EB26 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D5C182F323FC451A0099EB26 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D5C182F523FC5FB20099EB26 /* AppleMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusic.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				D5D8654223FC319F003A913B /* URL+.swift */,
+				D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 		D5FE2C3923FB749000E9CFEB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84E923FDFEF200F8F7B1 /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,6 +269,8 @@
 		D5FE2C3A23FB749700E9CFEB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5BF84EB23FDFF9500F8F7B1 /* MainView.swift */,
+				D5BF84EF23FE60B100F8F7B1 /* AlbumCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,6 +436,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5FE2C0A23FB747E00E9CFEB /* AppDelegate.swift in Sources */,
+				D5BF84EC23FDFF9500F8F7B1 /* MainView.swift in Sources */,
+				D5BF84EA23FDFEF200F8F7B1 /* MainViewController.swift in Sources */,
+				D5BF84F023FE60B100F8F7B1 /* AlbumCell.swift in Sources */,
 				D5FE2C0C23FB747E00E9CFEB /* SceneDelegate.swift in Sources */,
 				D5FE2C3E23FC2F6F00E9CFEB /* Network.swift in Sources */,
 				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
@@ -431,6 +446,7 @@
 				D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */,
 				D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */,
 				D5C1830723FC83630099EB26 /* Storage.swift in Sources */,
+				D5BF84EE23FE464D00F8F7B1 /* UIView+.swift in Sources */,
 				D5C182F423FC451A0099EB26 /* Album.swift in Sources */,
 				D5C182F623FC5FB20099EB26 /* AppleMusic.swift in Sources */,
 			);
