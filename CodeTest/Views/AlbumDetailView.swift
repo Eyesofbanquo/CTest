@@ -9,18 +9,12 @@
 import Foundation
 import UIKit
 
-protocol AlbumDetailViewDelegate: AnyObject {
-  func formatDate(fromString releaseDate: String) -> String? 
-}
-
 class AlbumDetailView: UIView {
   
   // MARK: - Properties -
-  
-  weak var delegate: AlbumDetailViewDelegate?
-  
+    
   var album: Album
-  
+    
   // MARK: - Views -
   
   lazy var blurEffectView: UIVisualEffectView = createVisualEffectView()
@@ -59,7 +53,7 @@ class AlbumDetailView: UIView {
     
     setupAlbumArtworkImageView(artwork)
     
-    setupBackgroundImageView()
+    setupBackgroundImageView(artwork)
     
     setupAlbumArtistLabel(album)
     
@@ -96,6 +90,8 @@ class AlbumDetailView: UIView {
       // Album artwork constraints
       albumArtworkImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
       albumArtworkImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+      albumArtworkImageView.widthAnchor.constraint(equalToConstant: 200.0),
+      albumArtworkImageView.heightAnchor.constraint(equalToConstant: 200.0),
       
       // Stack View
       mainStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
@@ -191,7 +187,7 @@ extension AlbumDetailView {
     return stackView
   }
   
-  fileprivate func setupBackgroundImageView() {
+  fileprivate func setupBackgroundImageView(_ artwork: UIImage?) {
     let motionEffectGroup = UIMotionEffectGroup()
     let min = CGFloat(-10)
     let max = CGFloat(10)
@@ -206,12 +202,10 @@ extension AlbumDetailView {
     motionEffectGroup.motionEffects = [xMotion, yMotion]
     
     self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+    self.backgroundImageView.image = artwork
     self.backgroundImageView.contentMode = .scaleAspectFill
     self.backgroundImageView.layer.masksToBounds = true
     backgroundImageView.addMotionEffect(motionEffectGroup)
-    
-    self.backgroundImageView.alpha = 0
-    self.blurEffectView.alpha = 0
   }
   
   fileprivate func setupAlbumArtistLabel(_ album: Album) {
@@ -227,15 +221,6 @@ extension AlbumDetailView {
     self.albumGenreLabel.numberOfLines = 1
   }
   
-  func setReleaseDateLabel(releaseDate: String?) {
-    
-    if let releaseDate = releaseDate {
-      self.albumReleaseDateLabel.text = "Releases on " + releaseDate
-    } else {
-      self.albumReleaseDateLabel.text = "Releases in the near future"
-    }
-  }
-  
   fileprivate func setupCopyrightLabel(_ album: Album) {
     self.albumCopyrightLabel.text = album.copyright
     self.albumCopyrightLabel.font = .preferredFont(forTextStyle: .caption1)
@@ -244,7 +229,11 @@ extension AlbumDetailView {
   }
   
   fileprivate func setupReleaseDateLabel(_ album: Album) {
-    setReleaseDateLabel(releaseDate: album.releaseDate)
+    if let readableDate = album.readableDate {
+       self.albumReleaseDateLabel.text = "Releases on " + readableDate
+    } else {
+      self.albumReleaseDateLabel.text = "Releases in the near future"
+    }
     self.albumReleaseDateLabel.numberOfLines = 1
     self.albumReleaseDateLabel.font = .preferredFont(forTextStyle: .title3)
   }
@@ -259,7 +248,7 @@ extension AlbumDetailView {
     openURLButton.layer.cornerRadius = 8.0
     openURLButton.contentEdgeInsets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
     openURLButton.backgroundColor = .systemPink
-    openURLButton.setTitle("Open in iTunes", for: .normal)
+    openURLButton.setTitle("Open in  Apple Music", for: .normal)
     openURLButton.setTitleColor(.white, for: .normal)
     openURLButton.addTarget(self, action: #selector(self.launchItunes), for: .touchUpInside)
   }
@@ -276,11 +265,14 @@ extension AlbumDetailView {
 extension AlbumDetailView: AlbumDetailViewControllerDisplayable {
   func updateBackgroundImage(image: UIImage?) {
     
-    UIView.animate(withDuration: 0.65) {
-      self.backgroundImageView.alpha = 1
-      self.blurEffectView.alpha = 1
+    UIView.transition(with: self.backgroundImageView, duration: 0.65, options: .transitionCrossDissolve, animations: {
       self.backgroundImageView.image = image
-    }
+    }, completion: nil)
+    
+    
+    UIView.transition(with: self.albumArtworkImageView, duration: 1.25, options: .transitionCrossDissolve, animations: {
+    self.albumArtworkImageView.image = image
+    }, completion: nil)
   }
   
   
