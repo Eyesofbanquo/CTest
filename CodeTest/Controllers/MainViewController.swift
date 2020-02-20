@@ -59,6 +59,8 @@ class MainViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    title = "Nike☑️ Code Test"
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -107,5 +109,29 @@ extension MainViewController: MainViewDelegate {
     }) {
       operationManager.add(id: album.id, op: downloadOperation)
     }
+  }
+}
+
+extension MainViewController {
+  
+  static func navigationController(storage: Storage = Storage(), network: Network<AppleMusic> = Network<AppleMusic>(), operationManager: OperationManager = OperationManager()) -> UINavigationController {
+    
+    let mainViewController = MainViewController(storage: storage, network: network, operationManager: operationManager)
+    let navigationController = UINavigationController(rootViewController: mainViewController)
+    
+    navigationController.navigationBar.prefersLargeTitles = true
+    navigationController.navigationBar.tintColor = .label
+    
+    let navigationAppearance = UINavigationBarAppearance()
+    navigationAppearance.configureWithOpaqueBackground()
+    navigationAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
+    navigationAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
+    navigationAppearance.backgroundColor = .systemGroupedBackground
+    
+    navigationController.navigationItem.scrollEdgeAppearance = navigationAppearance
+    navigationController.navigationItem.compactAppearance = navigationAppearance
+    
+    return navigationController
+
   }
 }
