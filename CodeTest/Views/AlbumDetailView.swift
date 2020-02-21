@@ -67,22 +67,25 @@ class AlbumDetailView: UIView {
     
     setupButton()
     
-    let albumInfoStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 8.0)
+    let labelContainerView = UIView()
+    labelContainerView.layer.cornerRadius = 8.0
+    labelContainerView.translatesAutoresizingMaskIntoConstraints = false
+    labelContainerView.backgroundColor = .tertiarySystemGroupedBackground
+    
+    let albumInfoStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 0.0)
     albumInfoStackView.addArrangedSubview(albumTitleLabel)
     albumInfoStackView.addArrangedSubview(albumArtistLabel)
     albumInfoStackView.addArrangedSubview(albumReleaseDateLabel)
+    albumInfoStackView.addArrangedSubview(albumGenreLabel)
     
-    
-    let metadataStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 16.0)
-    metadataStackView.addArrangedSubview(albumGenreLabel)
-    metadataStackView.addArrangedSubview(albumCopyrightLabel)
+    let mainStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 32.0)
+    mainStackView.addArrangedSubview(albumInfoStackView)
+    mainStackView.addArrangedSubview(albumCopyrightLabel)
     albumCopyrightLabel.textAlignment = .right
     
-    let mainStackView = createStackView(axis: .vertical, alignment: .fill, distribution: .fill, spacing: 16.0)
-    mainStackView.addArrangedSubview(albumInfoStackView)
-    mainStackView.addArrangedSubview(metadataStackView)
+    labelContainerView.sv([mainStackView])
     
-    self.sv([albumArtworkImageView, mainStackView, openURLButton])
+    self.sv([albumArtworkImageView, labelContainerView, openURLButton])
     self.insertSubview(backgroundImageView, belowSubview: albumArtworkImageView)
     self.insertSubview(blurEffectView, aboveSubview: backgroundImageView)
     
@@ -93,10 +96,16 @@ class AlbumDetailView: UIView {
       albumArtworkImageView.widthAnchor.constraint(equalToConstant: 200.0),
       albumArtworkImageView.heightAnchor.constraint(equalToConstant: 200.0),
       
+      // Label Container View
+      labelContainerView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+      labelContainerView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+      labelContainerView.topAnchor.constraint(equalTo: albumArtworkImageView.bottomAnchor, constant: 24.0),
+      labelContainerView.bottomAnchor.constraint(equalTo: openURLButton.topAnchor, constant: -24.0),
+      
       // Stack View
-      mainStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      mainStackView.topAnchor.constraint(equalTo: albumArtworkImageView.bottomAnchor, constant: 24.0),
+      mainStackView.leadingAnchor.constraint(equalTo: labelContainerView.layoutMarginsGuide.leadingAnchor, constant: 8.0),
+      mainStackView.trailingAnchor.constraint(equalTo: labelContainerView.layoutMarginsGuide.trailingAnchor, constant: -8.0),
+      mainStackView.topAnchor.constraint(equalTo: labelContainerView.layoutMarginsGuide.topAnchor, constant: 8.0),
       
       // Background Image View
       backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -217,13 +226,14 @@ extension AlbumDetailView {
   fileprivate func setupGenreLabel(_ album: Album) {
     let genres = album.genres.map { $0.name }.joined(separator: ",")
     self.albumGenreLabel.text = "Genres: " + genres
-    self.albumGenreLabel.font = .preferredFont(forTextStyle: .subheadline)
+    self.albumGenreLabel.font = .preferredFont(for: .subheadline, weight: .light)
     self.albumGenreLabel.numberOfLines = 1
   }
   
   fileprivate func setupCopyrightLabel(_ album: Album) {
     self.albumCopyrightLabel.text = album.copyright
-    self.albumCopyrightLabel.font = .preferredFont(forTextStyle: .caption1)
+    self.albumCopyrightLabel.textColor = .label
+    self.albumCopyrightLabel.font = .preferredFont(for: .caption2, weight: .light)
     self.albumCopyrightLabel.numberOfLines = 0
     self.albumCopyrightLabel.lineBreakMode = .byWordWrapping
   }
@@ -235,13 +245,13 @@ extension AlbumDetailView {
       self.albumReleaseDateLabel.text = "Releases in the near future"
     }
     self.albumReleaseDateLabel.numberOfLines = 1
-    self.albumReleaseDateLabel.font = .preferredFont(forTextStyle: .title3)
+    self.albumReleaseDateLabel.font = .preferredFont(for: .headline, weight: .light)
   }
   
   fileprivate func setupTitleLabel(_ album: Album) {
     self.albumTitleLabel.text = album.title
     self.albumTitleLabel.numberOfLines = 0
-    self.albumTitleLabel.font = .preferredFont(forTextStyle: .title1)
+    self.albumTitleLabel.font = .preferredFont(for: .title1, weight: .bold)
   }
   
   fileprivate func setupButton() {
