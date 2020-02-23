@@ -41,12 +41,7 @@ class AlbumDetailViewController: UIViewController {
   // MARK: - Lifecycle -
   
   override func loadView() {
-    let detailView = AlbumDetailView(album: album, artwork: artwork)
-    
-    let albumReleaseDate = formatDate(fromString: album.releaseDate)
-    detailView.setReleaseDateLabel(releaseDate: albumReleaseDate)
-    
-    view = detailView
+    view = AlbumDetailView(album: album, artwork: artwork)
   }
   
   override func viewDidLoad() {
@@ -54,6 +49,10 @@ class AlbumDetailViewController: UIViewController {
     
     title = "Upcoming Album"
     
+    downloadBackgroundImage()
+  }
+  
+  private func downloadBackgroundImage() {
     let largeArtwork = album.artwork.replacingOccurrences(of: "200x200", with: "1000x1000")
     if let downloadOp = (DownloadOperation(id: album.id, url: URL(string:largeArtwork)) { [weak self] index, image in
       self?.displaybleView?.updateBackgroundImage(image: image)
@@ -61,21 +60,4 @@ class AlbumDetailViewController: UIViewController {
       operationManager.add(id: album.id, op: downloadOp)
     }
   }
-}
-
-extension AlbumDetailViewController: AlbumDetailViewDelegate {
-  func formatDate(fromString releaseDate: String) -> String? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    guard let date = dateFormatter.date(from: releaseDate) else { return nil }
-    
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MMMM d, yyyy"
-    
-    let stringDate = formatter.string(from: date)
-    
-    return stringDate
-  }
-  
-  
 }

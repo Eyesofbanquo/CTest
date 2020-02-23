@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D52C9C7623FF164B00F72361 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52C9C7523FF164B00F72361 /* UIFont+.swift */; };
 		D5BF84E023FD3ABF00F8F7B1 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */; };
 		D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */; };
 		D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D52C9C7523FF164B00F72361 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		D5BF84DF23FD3ABF00F8F7B1 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		D5BF84E223FD411A00F8F7B1 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		D5BF84E423FD438400F8F7B1 /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				D5D8654223FC319F003A913B /* URL+.swift */,
 				D5BF84ED23FE464D00F8F7B1 /* UIView+.swift */,
+				D52C9C7523FF164B00F72361 /* UIFont+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				D5D8654323FC319F003A913B /* URL+.swift in Sources */,
 				D5C182F223FC36480099EB26 /* NetworkError.swift in Sources */,
 				D5BF84E523FD438400F8F7B1 /* DownloadOperation.swift in Sources */,
+				D52C9C7623FF164B00F72361 /* UIFont+.swift in Sources */,
 				D5BF84E323FD411A00F8F7B1 /* OperationManager.swift in Sources */,
 				D5C1830723FC83630099EB26 /* Storage.swift in Sources */,
 				D5BF84EE23FE464D00F8F7B1 /* UIView+.swift in Sources */,

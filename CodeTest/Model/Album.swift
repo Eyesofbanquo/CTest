@@ -41,6 +41,19 @@ struct Album: Decodable {
     case artwork = "artworkUrl100"
   }
   
+  var readableDate: String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    guard let date = dateFormatter.date(from: releaseDate) else { return nil }
+    
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMMM d, yyyy"
+    
+    let stringDate = formatter.string(from: date)
+    
+    return stringDate
+  }
+  
 }
 
 extension Album {

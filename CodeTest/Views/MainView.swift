@@ -76,6 +76,7 @@ extension MainView: UITableViewDataSource {
     return delegate?.storage.count ?? 0
   }
   
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.reuseIdentifier, for: indexPath)
     
@@ -91,9 +92,10 @@ extension MainView: UITableViewDataSource {
       delegate?.retrieveImage(forAlbum: album, at: indexPath, { id, image in
         if let visibleIndexPaths = tableView.indexPathsForVisibleRows, visibleIndexPaths.contains(id) {
           let cell = tableView.cellForRow(at: id) as? AlbumCell
-          cell?.setImage(image: image)
           UIView.performWithoutAnimation {
-            tableView.reloadRows(at: [id], with: .none)
+            tableView.beginUpdates()
+            cell?.setImage(image: image)
+            tableView.endUpdates()
           }
         }
       })

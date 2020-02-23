@@ -22,6 +22,7 @@ class DownloadOperation: Operation {
   private var url: URL
   private var session: URLSession
   private var completion: (String?, UIImage?) -> Void
+  private var dataTask: URLSessionDataTask?
   
   override var isCancelled: Bool {
     get {
@@ -99,8 +100,8 @@ class DownloadOperation: Operation {
     isExecuting = true
     
     let request = URLRequest(url: url)
-    let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
-      guard let data = data, error == nil else {
+    dataTask = session.dataTask(with: request) { [weak self] data, response, error in
+      guard let data = data, error == nil, self?.isCancelled == false else {
         self?.isFinished = true
         self?.isExecuting = false
         return
@@ -116,12 +117,17 @@ class DownloadOperation: Operation {
       
       DispatchQueue.main.async {
         self?.completion(self?.id, image)
+        self?.isFinished = true
+        self?.isExecuting = false
       }
       
-      self?.isFinished = true
-      self?.isExecuting = false
     }
     
-    dataTask.resume()
+    dataTask?.resume()
+  }
+  
+  override func cancel() {
+    dataTask?.cancel()
+    isCancelled = true
   }
 }
