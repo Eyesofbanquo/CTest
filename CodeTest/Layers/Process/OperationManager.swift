@@ -18,6 +18,10 @@ class OperationManager {
     return operations.count
   }
   
+  var hasRunningOperations: Bool {
+    return operations.contains(where: { $0.value.isExecuting == true })
+  }
+  
   init(queue: OperationQueue = .main) {
     self.operations = [:]
     self.queue = queue

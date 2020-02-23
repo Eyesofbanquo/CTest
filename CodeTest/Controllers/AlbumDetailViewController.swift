@@ -21,15 +21,22 @@ class AlbumDetailViewController: UIViewController {
   
   private var artwork: UIImage?
   
-  lazy var operationManager: OperationManager = OperationManager()
+  private(set) var operationManager: OperationManager
+  
+  private(set) var urlSession: URLSession
   
   var displaybleView: AlbumDetailViewControllerDisplayable? {
     return view as? AlbumDetailViewControllerDisplayable
   }
   
-  init(album: Album, artwork: UIImage?) {
+  init(album: Album,
+       artwork: UIImage?,
+       queueManager: OperationManager = OperationManager(),
+       urlSession: URLSession = .shared) {
     self.album = album
     self.artwork = artwork
+    self.operationManager = queueManager
+    self.urlSession = urlSession
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -54,7 +61,7 @@ class AlbumDetailViewController: UIViewController {
   
   private func downloadBackgroundImage() {
     let largeArtwork = album.artwork.replacingOccurrences(of: "200x200", with: "1000x1000")
-    if let downloadOp = (DownloadOperation(id: album.id, url: URL(string:largeArtwork)) { [weak self] index, image in
+    if let downloadOp = (DownloadOperation(id: album.id, url: URL(string:largeArtwork), session: urlSession) { [weak self] index, image in
       self?.displaybleView?.updateBackgroundImage(image: image)
     }) {
       operationManager.add(id: album.id, op: downloadOp)
