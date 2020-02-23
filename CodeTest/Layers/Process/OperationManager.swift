@@ -37,10 +37,7 @@ class OperationManager {
   }
   
   func remove(id: String) {
-    if operations[id]?.isExecuting == true {
-      return
-    }
-    
+    operations[id]?.cancel()
     operations.removeValue(forKey: id)
   }
 }

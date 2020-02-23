@@ -12,6 +12,7 @@ import XCTest
 
 class NetworkTests: XCTestCase {
   
+  var testSession: URLSession!
   var queue: DispatchQueue!
   var network: Network<AppleMusic>!
   
@@ -22,11 +23,13 @@ class NetworkTests: XCTestCase {
     
     let config = URLSessionConfiguration.default
     config.protocolClasses = [MockURLSessionProtocol.self]
-    let testSession = URLSession(configuration: config)
+    testSession = URLSession(configuration: config)
     network = Network<AppleMusic>(session: testSession, on: queue)
   }
   
   override func tearDown() {
+    testSession.finishTasksAndInvalidate()
+    testSession = nil
     network = nil
     queue = nil
     super.tearDown()
