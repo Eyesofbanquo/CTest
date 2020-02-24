@@ -108,11 +108,7 @@ extension MainViewController: MainViewDelegate {
     
     if let downloadOperation = (DownloadOperation(id: album.id, url: URL(string: album.artwork), session: network.session) { [weak self] id, image in
       self?.storage.saveImage(forId: album.id, value: image)
-      
-      if let downloadedId = id {
-        self?.operationManager.remove(id: downloadedId)
-      }
-      
+            
       completion(index, image)
     }) {
       operationManager.add(id: album.id, op: downloadOperation)
