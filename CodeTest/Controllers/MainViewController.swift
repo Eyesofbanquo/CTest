@@ -66,16 +66,15 @@ class MainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    network.get(url: URL(string: rssFeed),
-                cachingEnabled: true) { [weak self] results in
-                  switch results {
-                  case .success(let response):
-                    let results = response.results
-                    self?.storage.add(albums: results)
-                    self?.displyableView?.updateView()
-                  case .failure(let error):
-                    print(error.localizedDescription)
-                  }
+    network.get(url: URL(string: rssFeed)) { [weak self] results in
+        switch results {
+        case .success(let response):
+          let results = response.results
+          self?.storage.add(albums: results)
+          self?.displyableView?.updateView()
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
     }
   }
 }
@@ -107,8 +106,13 @@ extension MainViewController: MainViewDelegate {
       return
     }
     
-    if let downloadOperation = (DownloadOperation(id: album.id, url: URL(string: album.artwork)) { [weak self] id, image in
+    if let downloadOperation = (DownloadOperation(id: album.id, url: URL(string: album.artwork), session: network.session) { [weak self] id, image in
       self?.storage.saveImage(forId: album.id, value: image)
+      
+      if let downloadedId = id {
+        self?.operationManager.remove(id: downloadedId)
+      }
+      
       completion(index, image)
     }) {
       operationManager.add(id: album.id, op: downloadOperation)

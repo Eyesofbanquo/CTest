@@ -12,8 +12,9 @@ import XCTest
 
 class NetworkTests: XCTestCase {
   
+  var testSession: URLSession!
   var queue: DispatchQueue!
-  var network: Network<AppleMusic>!
+  var sut: Network<AppleMusic>!
   
   override func setUp() {
     super.setUp()
@@ -22,12 +23,14 @@ class NetworkTests: XCTestCase {
     
     let config = URLSessionConfiguration.default
     config.protocolClasses = [MockURLSessionProtocol.self]
-    let testSession = URLSession(configuration: config)
-    network = Network<AppleMusic>(session: testSession, on: queue)
+    testSession = URLSession(configuration: config)
+    sut = Network<AppleMusic>(session: testSession, on: queue, cachingEnabled: false)
   }
   
   override func tearDown() {
-    network = nil
+    testSession.finishTasksAndInvalidate()
+    testSession = nil
+    sut = nil
     queue = nil
     super.tearDown()
   }
@@ -49,7 +52,7 @@ class NetworkTests: XCTestCase {
       return (response, mockData)
     }
     
-    network.get(url: "https://www.google.com", cachingEnabled: false) { results in
+    sut.get(url: "https://www.google.com") { results in
       switch results {
       case .success(let appleMusicData):
         let results = appleMusicData.results
@@ -85,7 +88,7 @@ class NetworkTests: XCTestCase {
       return (response, mockData)
     }
     
-    network.get(url: "https://www.google.com", cachingEnabled: false) { results in
+    sut.get(url: "https://www.google.com") { results in
       switch results {
       case .success:
         XCTFail("This shouldn't load at all")

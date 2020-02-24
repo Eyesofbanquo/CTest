@@ -104,6 +104,13 @@ class DownloadOperation: Operation {
       guard let data = data, error == nil, self?.isCancelled == false else {
         self?.isFinished = true
         self?.isExecuting = false
+        self?.completion(self?.id ?? "", nil)
+        return
+      }
+      
+      guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+        self?.cancel()
+        self?.completion(self?.id ?? "", nil)
         return
       }
       

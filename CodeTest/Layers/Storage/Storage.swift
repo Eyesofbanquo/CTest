@@ -86,4 +86,8 @@ class Storage {
   func retrieveImage(forId id: String) -> UIImage? {
     return cache.object(forKey: id as NSString)?.image
   }
+  
+  func clearCache() {
+    cache.removeAllObjects()
+  }
 }

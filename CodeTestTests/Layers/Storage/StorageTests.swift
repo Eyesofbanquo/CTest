@@ -12,16 +12,16 @@ import XCTest
 
 class StorageTests: XCTestCase {
   
-  var storage: Storage!
+  var sut: Storage!
   
   override func setUp() {
     super.setUp()
     
-    storage = Storage()
+    sut = Storage()
   }
   
   override func tearDown() {
-    storage = nil
+    sut = nil
     super.tearDown()
   }
   
@@ -30,11 +30,11 @@ class StorageTests: XCTestCase {
     let album = albums[0]
     
     // When: - An album is added to storage
-    storage.add(album: album)
+    sut.add(album: album)
     
     // Then: - Storage should have a count of 1
     let expectedCount = 1
-    let count = storage.count
+    let count = sut.count
     XCTAssertEqual(count, expectedCount)
   }
   
@@ -43,23 +43,23 @@ class StorageTests: XCTestCase {
     let albums = self.albums
     
     // When: - Albums are added to storage
-    storage.add(albums: albums)
+    sut.add(albums: albums)
     
     // Then: - Storage should have same count as albums added
     let expectedCount = albums.count
-    let count = storage.count
+    let count = sut.count
     XCTAssertEqual(count, expectedCount)
   }
   
   func testRetrievingAlbum_ByIndex_NoItems() {
     // Given: - Storage doesn't contain any albums
     let expectedCount = 0
-    let count = storage.count
+    let count = sut.count
     XCTAssertEqual(count, expectedCount)
     
     // When: - User tries to retrieve an album by index
     let arbitraryIndex: Int = 0
-    let album = storage.get(index: arbitraryIndex)
+    let album = sut.get(index: arbitraryIndex)
     
     // Then: - Storage should return nil
     XCTAssertNil(album)
@@ -68,12 +68,12 @@ class StorageTests: XCTestCase {
   func testRetrievingAlbum_ById_NoItems() {
     // Given: - Storage doesn't contain any albums
     let expectedCount = 0
-    let count = storage.count
+    let count = sut.count
     XCTAssertEqual(count, expectedCount)
     
     // When: - User tries to retrieve an album by index
     let arbitraryId: String = "0"
-    let album = storage.get(id: arbitraryId)
+    let album = sut.get(id: arbitraryId)
     
     // Then: - Storage should return nil
     XCTAssertNil(album)
@@ -81,14 +81,14 @@ class StorageTests: XCTestCase {
   
   func testRetrievingAlbum_ById() {
     // Given: - Storage contains albums
-    storage.add(albums: albums)
+    sut.add(albums: albums)
     let expectedCount = 2
-    let count = storage.count
+    let count = sut.count
     XCTAssertEqual(count, expectedCount)
     
     // When: - User tries to retrieve an album by index
     let arbitraryId: String = "0"
-    let album = storage.get(id: arbitraryId)
+    let album = sut.get(id: arbitraryId)
     
     // Then: - Storage should return nil
     XCTAssertNotNil(album)
@@ -100,10 +100,10 @@ class StorageTests: XCTestCase {
     let image = UIImage(systemName: "play")
     
     // When: - Image is added to cache
-    storage.saveImage(forId: album.id, value: image)
+    sut.saveImage(forId: album.id, value: image)
     
     // Then: - Image can be retrieved from cache
-    let cachedImage = storage.retrieveImage(forId: album.id)
+    let cachedImage = sut.retrieveImage(forId: album.id)
     XCTAssertEqual(cachedImage, image)
   }
 }
