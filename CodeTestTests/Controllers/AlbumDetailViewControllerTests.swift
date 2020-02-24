@@ -15,7 +15,7 @@ class AlbumDetailViewControllerTests: XCTestCase {
   var urlSession: URLSession!
   var artwork: UIImage!
   var mockAlbum: Album!
-  var controller: AlbumDetailViewController!
+  var sut: AlbumDetailViewController!
   
   override func setUp() {
     super.setUp()
@@ -41,7 +41,7 @@ class AlbumDetailViewControllerTests: XCTestCase {
     /// Inject an OperationQueue of `.maxConcurrentOperationCount = 1` to force a synchronous request
     let mockQueue = OperationQueue()
     mockQueue.maxConcurrentOperationCount = 1
-    controller = AlbumDetailViewController(album: mockAlbum, artwork: artwork, queueManager: .init(queue: mockQueue), urlSession: urlSession)
+    sut = AlbumDetailViewController(album: mockAlbum, artwork: artwork, queueManager: .init(queue: mockQueue), urlSession: urlSession)
   }
   
   override func tearDown() {
@@ -49,28 +49,28 @@ class AlbumDetailViewControllerTests: XCTestCase {
     urlSession = nil
     artwork = nil
     mockAlbum = nil
-    controller = nil
+    sut = nil
     
     super.tearDown()
   }
   
   func testViewAsAlbumDetailViewControllerDisplayable() {
     // Given: - The view loads
-    controller.loadViewIfNeeded()
+    sut.loadViewIfNeeded()
     
     // Then: - the default view is of type AlbumDetailViewControllerDisplayable
-    let isDisplayableViewType = controller.view as? AlbumDetailViewControllerDisplayable != nil
+    let isDisplayableViewType = sut.view as? AlbumDetailViewControllerDisplayable != nil
     XCTAssertTrue(isDisplayableViewType)
   }
   
   func testInitialImageDownloads() {
     // Given: - View loads
-    controller.loadViewIfNeeded()
+    sut.loadViewIfNeeded()
     
     // When: - A download begins automatically
     
     // Then: - The OperationManager has a running task
-    let taskIsRunning = controller.operationManager.hasRunningOperations
+    let taskIsRunning = sut.operationManager.hasRunningOperations
     XCTAssertTrue(taskIsRunning)
   }
   

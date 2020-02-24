@@ -26,26 +26,30 @@ class DownloadOperationTests: XCTestCase {
   }
   
   override func tearDown() {
+    //    urlSession.finishTasksAndInvalidate()
     urlSession = nil
     operationManager = nil
+    
+    MockURLSessionProtocol.handler = nil
     
     super.tearDown()
   }
   
   func testDownloadOperation_onSuccess() {
+    
     let mockImage = UIImage(systemName: "play")
-       let mockData = mockImage?.pngData()!
-       
-       
-       MockURLSessionProtocol.handler = { request in
-         guard let url = request.url else {
-           throw NetworkError.invalidURL
-         }
-         
-         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-         
-         return (response, mockData!)
-       }
+    let mockData = mockImage?.pngData()!
+    
+    
+    MockURLSessionProtocol.handler = { request in
+      guard let url = request.url else {
+        throw NetworkError.invalidURL
+      }
+      
+      let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+      
+      return (response, mockData!)
+    }
     
     // Given: - An image url to download
     let url: URL = "gibberish"
@@ -59,24 +63,26 @@ class DownloadOperationTests: XCTestCase {
     
     // When: - < When a download is started
     operationManager.add(id: "nil", op: downloadOperation!)
+    
   }
   
   func testDownloadOperation_onFailure() {
     
+    let exp = expectation(description: "sync")
     
     let mockImage = UIImage(systemName: "play")
-       let mockData = mockImage?.pngData()!
-       
-       
-       MockURLSessionProtocol.handler = { request in
-         guard let url = request.url else {
-           throw NetworkError.invalidURL
-         }
-         
-         let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)!
-         
-         return (response, mockData!)
-       }
+    let mockData = mockImage?.pngData()!
+    
+    
+    MockURLSessionProtocol.handler = { request in
+      guard let url = request.url else {
+        throw NetworkError.invalidURL
+      }
+      
+      let response = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)!
+      
+      return (response, mockData!)
+    }
     
     // Given: - An image url to download
     let url: URL = "gibberish"
@@ -86,10 +92,13 @@ class DownloadOperationTests: XCTestCase {
     let downloadOperation = DownloadOperation(id: "nil", url: url, session: urlSession) { id, image in
       // Assert: - Image is not nil
       XCTAssertNil(image)
+      exp.fulfill()
     }
     
     // When: - < When a download is started
     operationManager.add(id: "nil", op: downloadOperation!)
+    
+    wait(for: [exp], timeout: 10.0)
   }
 }
 

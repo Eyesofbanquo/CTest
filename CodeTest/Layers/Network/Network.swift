@@ -16,18 +16,20 @@ final class Network<ModelType: Decodable> {
   private let networkTimeout: TimeInterval
   private(set) var session: URLSession
   private(set) var queue: DispatchQueue
+  private(set) var cachingEnabled: Bool
   
-  init(session: URLSession = URLSession.shared, on queue: DispatchQueue = .main, timeout: TimeInterval = 60.0) {
+  init(session: URLSession = URLSession.shared, on queue: DispatchQueue = .main, timeout: TimeInterval = 60.0, cachingEnabled: Bool = false) {
     self.networkTimeout = timeout
     self.session = session
     self.queue = queue
+    self.cachingEnabled = cachingEnabled
   }
   
   /// Performs a standard get request to retrieve content at the specified url. This supports caching
   /// - Parameters:
   ///   - url: The url containing the endpoint to hit for the `GET` request.
   ///   - completion: Returns the generic model type, decoded, as assigned through declaration of the Network object
-  func get(url: URL?, cachingEnabled: Bool = false, _ completion: ((Result<ModelType, NetworkError>) -> Void)? = nil) {
+  func get(url: URL?, _ completion: ((Result<ModelType, NetworkError>) -> Void)? = nil) {
     
     guard let url = url else {
       completion?(.failure(.invalidURL))
@@ -36,7 +38,7 @@ final class Network<ModelType: Decodable> {
     
     var request: URLRequest
     
-    if cachingEnabled {
+    if self.cachingEnabled {
       request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: networkTimeout)
     } else {
       request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: networkTimeout)
@@ -61,7 +63,6 @@ final class Network<ModelType: Decodable> {
     }
     
     let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
-      print(self?.queue)
       self?.queue.async {
         
         guard error == nil else {

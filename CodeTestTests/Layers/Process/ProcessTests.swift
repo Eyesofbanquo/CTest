@@ -16,16 +16,16 @@ import XCTest
 
 class ProcessTests: XCTestCase {
   
-  var manager: OperationManager!
+  var sut: OperationManager!
   
   override func setUp() {
     super.setUp()
     
-    manager = OperationManager()
+    sut = OperationManager()
   }
   
   override func tearDown() {
-    manager = nil
+    sut = nil
     
     super.tearDown()
   }
@@ -40,11 +40,11 @@ class ProcessTests: XCTestCase {
       XCTAssertNotNil(image)
     }
     
-    self.manager.add(id: "0", op: downloadOperation!)
-    self.manager.add(id: "1", op: downloadOperation2!)
+    self.sut.add(id: "0", op: downloadOperation!)
+    self.sut.add(id: "1", op: downloadOperation2!)
     
     let expectedCount = 2
-    let count = self.manager.operationCount
+    let count = self.sut.operationCount
     
     XCTAssertEqual(expectedCount, count)
   }
@@ -59,11 +59,11 @@ class ProcessTests: XCTestCase {
       XCTAssertNotNil(image)
     }
     
-    self.manager.add(id: "0", op: downloadOperation!)
-    self.manager.add(id: "0", op: downloadOperation2!)
+    self.sut.add(id: "0", op: downloadOperation!)
+    self.sut.add(id: "0", op: downloadOperation2!)
     
     let expectedCount = 1
-    let count = self.manager.operationCount
+    let count = self.sut.operationCount
     
     XCTAssertEqual(expectedCount, count)
   }
@@ -74,9 +74,9 @@ class ProcessTests: XCTestCase {
       XCTAssertNotNil(image)
     }
     
-    self.manager.add(id: "0", op: downloadOperation!)
+    self.sut.add(id: "0", op: downloadOperation!)
     
-    let retrievedOperation = self.manager.get(id: "0")
+    let retrievedOperation = self.sut.get(id: "0")
     
     XCTAssertEqual(retrievedOperation, downloadOperation)
     
@@ -88,12 +88,12 @@ class ProcessTests: XCTestCase {
       XCTAssertNotNil(image)
     }
     
-    self.manager.add(id: "0", op: downloadOperation!)
+    self.sut.add(id: "0", op: downloadOperation!)
     
-    self.manager.remove(id: "0")
+    self.sut.remove(id: "0")
     
     let expectedCount = 0
-    let count = self.manager.operationCount
+    let count = self.sut.operationCount
     XCTAssertEqual(expectedCount, count)
     
   }
